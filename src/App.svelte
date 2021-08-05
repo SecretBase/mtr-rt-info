@@ -1,9 +1,7 @@
 <script lang="ts">
   import { QueryClient, QueryClientProvider } from "@sveltestack/svelte-query";
   import { Container, Row, Col } from "sveltestrap";
-  import LightRailInfo from "./ LightRailInfo.svelte";
-  export let name: string;
-
+  import LightRailInfo from "./components/LightRailInfo.svelte";
   const queryClient = new QueryClient();
 </script>
 
