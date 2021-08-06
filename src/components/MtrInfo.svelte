@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Table, Input, Spinner, Row, Col, FormGroup } from "sveltestrap";
+  import { DateTime } from "luxon";
   import type { UseQueryStoreResult } from "@sveltestack/svelte-query";
   import useMtrInfo from "../hooks/useMtrInfo";
   import type { MtrResponse } from "../hooks/useMtrInfo";
@@ -112,7 +113,16 @@
             <tr>
               <td width="20%">{train.plat}號月台</td>
               <td>{stationsNameMap.get(train.dest)}</td>
-              <td width="20%" class="text-end">{train.time}</td>
+              <td width="20%" class="text-end"
+                >{Math.max(
+                  0,
+                  Math.floor(
+                    DateTime.fromFormat(train.time, "yyyy-MM-dd HH:mm:ss")
+                      .diff(DateTime.now(), ["minutes"])
+                      .toObject().minutes
+                  )
+                )} 分鐘</td
+              >
             </tr>
           {/each}
         </tbody>
@@ -124,7 +134,16 @@
             <tr>
               <td width="20%">{train.plat}號月台</td>
               <td>{stationsNameMap.get(train.dest)}</td>
-              <td width="20%" class="text-end">{train.time}</td>
+              <td width="20%" class="text-end"
+                >{Math.max(
+                  0,
+                  Math.floor(
+                    DateTime.fromFormat(train.time, "yyyy-MM-dd HH:mm:ss")
+                      .diff(DateTime.now(), ["minutes"])
+                      .toObject().minutes
+                  )
+                )} 分鐘</td
+              >
             </tr>
           {/each}
         </tbody>
