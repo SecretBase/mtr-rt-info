@@ -2,22 +2,7 @@
   import type { UseQueryStoreResult } from "@sveltestack/svelte-query";
   import { Table, Input, Spinner, Row, Col } from "sveltestrap";
   import useLightRailInfo from "../hooks/useLightRailInfo";
-
-  // https://opendata.mtr.com.hk/doc/LR_Next_Train_DataDictionary_v1.0.pdf
-  interface LightRailResponse {
-    platform_list: {
-      platform_id: number;
-      route_list: {
-        arrival_departure: "A" | "D";
-        dest_ch: string;
-        dest_en: string;
-        route_no: string;
-        stop: number;
-        time_ch: string;
-        time_en: string;
-      }[];
-    }[];
-  }
+  import type { LightRailResponse } from "../hooks/useLightRailInfo";
 
   const LIGHT_RAIL_FAVORITE_KEY = "favorite-light-rail";
   let localStorageFavorite = localStorage.getItem(LIGHT_RAIL_FAVORITE_KEY);
@@ -112,7 +97,11 @@
   function onFavoriteClick(e: Event) {
     e.preventDefault();
 
-    if (localStorage.getItem(LIGHT_RAIL_FAVORITE_KEY)) {
+    if (
+      localStorage.getItem(LIGHT_RAIL_FAVORITE_KEY) &&
+      localStorage.getItem(LIGHT_RAIL_FAVORITE_KEY) ===
+        String(localStorage.getItem(LIGHT_RAIL_FAVORITE_KEY))
+    ) {
       localStorage.removeItem(LIGHT_RAIL_FAVORITE_KEY);
       localStorageFavorite = null;
     } else {
@@ -122,6 +111,7 @@
   }
 </script>
 
+<h3>Light Rail</h3>
 <Row>
   <Col xs={10}>
     <Input

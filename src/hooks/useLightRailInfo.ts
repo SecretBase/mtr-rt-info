@@ -1,11 +1,11 @@
-import { lightRailApiClient } from "../utils/apiClient";
+import { apiClient } from "../utils/apiClient";
 import { useQuery } from "@sveltestack/svelte-query";
 
 interface Params {
   stationId: number;
 }
 
-interface LightRailResponse {
+export interface LightRailResponse {
   platform_list: {
     platform_id: number;
     route_list: {
@@ -24,8 +24,8 @@ const useLightRailInfo = (params: Params) => {
   return useQuery(
     ["light-rail", params],
     async () => {
-      const response = await lightRailApiClient.get<LightRailResponse>(
-        "/getSchedule",
+      const response = await apiClient.get<LightRailResponse>(
+        "/lrt/getSchedule",
         {
           params: {
             station_id: params.stationId,
