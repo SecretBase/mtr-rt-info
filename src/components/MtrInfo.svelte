@@ -89,13 +89,13 @@
 </div>
 
 <div class="justify-content-center">
-  <div xs={12} class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center">
     {#if $queryResults.isLoading}Loading ...{/if}
   </div>
 </div>
 
 {#if $queryResults.data}
-  <table class="mb-4 w-full">
+  <table class="mb-4 w-full table-fixed">
     <caption class="text-md py-2 text-gray-400 text-left">UP</caption>
     <tbody>
       {#each UP as train}
@@ -116,7 +116,7 @@
       {/each}
     </tbody>
   </table>
-  <table class="w-full">
+  <table class="w-full table-fixed">
     <caption class="text-md py-2 text-gray-400 text-left">DOWN</caption>
     <tbody>
       {#each DOWN as train}
@@ -138,9 +138,3 @@
     </tbody>
   </table>
 {/if}
-
-<style>
-  table {
-    table-layout: fixed;
-  }
-</style>
