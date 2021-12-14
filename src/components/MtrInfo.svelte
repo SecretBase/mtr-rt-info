@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { Table, Input, Spinner, Row, Col, FormGroup } from "sveltestrap";
   import { DateTime } from "luxon";
   import type { UseQueryStoreResult } from "@sveltestack/svelte-query";
   import useMtrInfo from "../hooks/useMtrInfo";
@@ -26,7 +25,7 @@
   $: line = lines.find((line) => line.value === selectedLine);
   $: stations = line?.stations;
 
-  function onSelectLine(e: Event & { target: HTMLSelectElement }) {
+  function onSelectLine(e) {
     e.preventDefault();
     selectedLine = e.target.value;
     selectedLine;
@@ -35,7 +34,7 @@
       ?.stations[0].value;
   }
 
-  function onSelectStation(e: Event & { target: HTMLSelectElement }) {
+  function onSelectStation(e) {
     e.preventDefault();
     selectedStation = e.target.value;
   }
@@ -60,96 +59,84 @@
   $: DOWN = routes?.DOWN;
 </script>
 
-<h3>MTR</h3>
-<Row>
-  <Col md={6}>
-    <FormGroup>
-      <Input
-        type="select"
-        name="lineId"
-        id="select-lines"
-        on:change={onSelectLine}
+<h3 class="mb-4 text-2xl">MTR</h3>
+<div class="flex gap-4">
+  <select
+    class="flex-1 border border-gray-400 p-1.5 rounded"
+    name="lineId"
+    id="select-lines"
+    on:change={onSelectLine}
+  >
+    {#each lines as line (line.value)}
+      <option value={line.value} selected={selectedLine === line.value}
+        >{line.name}</option
       >
-        {#each lines as line (line.value)}
-          <option value={line.value} selected={selectedLine === line.value}
-            >{line.name}</option
-          >
-        {/each}
-      </Input>
-    </FormGroup>
-  </Col>
-  <Col md={6}>
-    <FormGroup>
-      <Input
-        type="select"
-        name="lineId"
-        id="select-lines"
-        on:change={onSelectStation}
-      >
-        {#each stations as station (station.value)}
-          <option
-            value={station.value}
-            selected={selectedStation === station.value}>{station.name}</option
-          >
-        {/each}
-      </Input>
-    </FormGroup>
-  </Col>
-</Row>
+    {/each}
+  </select>
 
-<Row class="justify-content-center">
-  <Col xs={12} class="d-flex justify-content-center">
-    {#if $queryResults.isLoading}<Spinner color="primary" />{/if}
-  </Col>
-</Row>
+  <select
+    class="flex-1 border border-gray-400 p-1.5 rounded"
+    name="lineId"
+    id="select-lines"
+    on:change={onSelectStation}
+  >
+    {#each stations as station (station.value)}
+      <option value={station.value} selected={selectedStation === station.value}
+        >{station.name}</option
+      >
+    {/each}
+  </select>
+</div>
+
+<div class="justify-content-center">
+  <div xs={12} class="d-flex justify-content-center">
+    {#if $queryResults.isLoading}Loading ...{/if}
+  </div>
+</div>
 
 {#if $queryResults.data}
-  <Row>
-    <Col>
-      <Table>
-        <caption class="caption-top">UP</caption>
-        <tbody>
-          {#each UP as train}
-            <tr>
-              <td width="20%">{train.plat}號月台</td>
-              <td>{stationsNameMap.get(train.dest)}</td>
-              <td width="20%" class="text-end"
-                >{Math.max(
-                  0,
-                  Math.floor(
-                    DateTime.fromFormat(train.time, "yyyy-MM-dd HH:mm:ss")
-                      .diff(DateTime.now(), ["minutes"])
-                      .toObject().minutes
-                  )
-                )} 分鐘</td
-              >
-            </tr>
-          {/each}
-        </tbody>
-      </Table>
-      <Table>
-        <caption class="caption-top">DOWN</caption>
-        <tbody>
-          {#each DOWN as train}
-            <tr>
-              <td width="20%">{train.plat}號月台</td>
-              <td>{stationsNameMap.get(train.dest)}</td>
-              <td width="20%" class="text-end"
-                >{Math.max(
-                  0,
-                  Math.floor(
-                    DateTime.fromFormat(train.time, "yyyy-MM-dd HH:mm:ss")
-                      .diff(DateTime.now(), ["minutes"])
-                      .toObject().minutes
-                  )
-                )} 分鐘</td
-              >
-            </tr>
-          {/each}
-        </tbody>
-      </Table>
-    </Col>
-  </Row>
+  <table class="mb-4 w-full">
+    <caption class="text-md py-2 text-gray-400 text-left">UP</caption>
+    <tbody>
+      {#each UP as train}
+        <tr class="border-b">
+          <td class="w-1/5 py-2">{train.plat}號月台</td>
+          <td class="py-2">{stationsNameMap.get(train.dest)}</td>
+          <td class="w-1/5 text-right py-2"
+            >{Math.max(
+              0,
+              Math.floor(
+                DateTime.fromFormat(train.time, "yyyy-MM-dd HH:mm:ss")
+                  .diff(DateTime.now(), ["minutes"])
+                  .toObject().minutes
+              )
+            )} 分鐘</td
+          >
+        </tr>
+      {/each}
+    </tbody>
+  </table>
+  <table class="w-full">
+    <caption class="text-md py-2 text-gray-400 text-left">DOWN</caption>
+    <tbody>
+      {#each DOWN as train}
+        <tr class="border-b">
+          <td class="w-1/5 py-2">{train.plat}號月台</td>
+          <td class="py-2">{stationsNameMap.get(train.dest)}</td>
+          <td class="w-1/5 text-right py-2"
+            >{Math.max(
+              0,
+              Math.floor(
+                DateTime.fromFormat(train.time, "yyyy-MM-dd HH:mm:ss")
+                  .diff(DateTime.now(), ["minutes"])
+                  .toObject().minutes
+              )
+            )} 分鐘</td
+          >
+        </tr>
+      {/each}
+    </tbody>
+  </table>
 {/if}
 
 <style>

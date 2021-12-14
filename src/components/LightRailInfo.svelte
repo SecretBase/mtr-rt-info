@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { UseQueryStoreResult } from "@sveltestack/svelte-query";
-  import { Table, Input, Spinner, Row, Col } from "sveltestrap";
   import useLightRailInfo from "../hooks/useLightRailInfo";
   import type { LightRailResponse } from "../hooks/useLightRailInfo";
 
@@ -89,7 +88,7 @@
     });
   }
 
-  function onSelect(e: Event & { target: HTMLSelectElement }) {
+  function onSelect(e) {
     e.preventDefault();
     selectedStation = parseInt(e.target.value, 10);
   }
@@ -111,99 +110,74 @@
   }
 </script>
 
-<h3>Light Rail</h3>
-<Row>
-  <Col xs={10}>
-    <Input
-      type="select"
-      name="stationId"
-      id="select-station"
-      on:change={onSelect}
-    >
-      {#each stations as station (station.value)}
-        <option
-          value={station.value}
-          selected={selectedStation === station.value}>{station.name}</option
-        >
-      {/each}
-    </Input>
-  </Col>
-  <Col xs={2} class="d-flex justify-content-center align-items-center">
-    <button
-      class={`${"star-button"} ${
-        localStorageFavorite &&
-        selectedStation === parseInt(localStorageFavorite, 10)
-          ? "active"
-          : ""
-      }`}
-      on:click={onFavoriteClick}
-    >
-      {#if localStorageFavorite && selectedStation === parseInt(localStorageFavorite, 10)}<svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          class="bi bi-star-fill"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-          />
-        </svg>
-      {:else}<svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          class="bi bi-star"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"
-          />
-        </svg>{/if}
-    </button></Col
+<h3 class="mb-4 text-2xl">Light Rail</h3>
+<div class="flex gap-2 mb-4">
+  <select
+    class="border p-1.5 border-gray-400 rounded flex-1"
+    name="stationId"
+    id="select-station"
+    on:change={onSelect}
   >
-</Row>
-<Row class="justify-content-center">
-  <Col xs={12} class="d-flex justify-content-center">
-    {#if $queryResults.isLoading}<Spinner color="primary" />{/if}
-  </Col>
-</Row>
+    {#each stations as station (station.value)}
+      <option value={station.value} selected={selectedStation === station.value}
+        >{station.name}</option
+      >
+    {/each}
+  </select>
+  <button
+    class={`bg-transparent border-0 p-0 star-button ${
+      localStorageFavorite &&
+      selectedStation === parseInt(localStorageFavorite, 10)
+        ? "text-yellow-300"
+        : ""
+    }`}
+    on:click={onFavoriteClick}
+  >
+    {#if localStorageFavorite && selectedStation === parseInt(localStorageFavorite, 10)}<svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-star-fill"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
+        />
+      </svg>
+    {:else}<svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-star"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"
+        />
+      </svg>{/if}
+  </button>
+</div>
+<div class="justify-content-center">
+  <div class="d-flex justify-content-center">
+    {#if $queryResults.isLoading} Loading ... {/if}
+  </div>
+</div>
 
 {#if $queryResults.data}
-  <Row>
-    <Col>
-      {#each $queryResults.data.platform_list as platform}
-        <Table class={$$props.class}>
-          <caption class="caption-top">{platform.platform_id}號月台</caption>
-          <tbody>
-            {#each platform.route_list as route}
-              <tr>
-                <td width="10%">{route.route_no}</td>
-                <td>{route.dest_ch}</td>
-                <td width="30%" class="text-end">{route.time_ch}</td>
-              </tr>
-            {/each}
-          </tbody>
-        </Table>
-      {/each}
-    </Col>
-  </Row>
+  {#each $queryResults.data.platform_list as platform}
+    <p class="text-md py-2 text-gray-400">{platform.platform_id}號月台</p>
+    <table class="w-full mb-8 table-fixed">
+      <tbody>
+        {#each platform.route_list as route}
+          <tr class="border-b">
+            <td class="py-2 w-2/12">{route.route_no}</td>
+            <td class="py-2">{route.dest_ch}</td>
+            <td class="py-2 text-right w-4/12">{route.time_ch}</td>
+          </tr>
+        {/each}
+      </tbody>
+    </table>
+  {/each}
 {/if}
-
-<style>
-  table {
-    table-layout: fixed;
-  }
-
-  .star-button {
-    background-color: transparent;
-    border: none;
-    padding: 0;
-  }
-
-  .star-button.active {
-    color: #ffc107;
-  }
-</style>

@@ -15,6 +15,8 @@
     "@rollup/plugin-typescript": "^8.0.0",
     "@tsconfig/svelte": "^2.0.0",
     "@types/luxon": "^1.27.1",
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.5",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-livereload": "^2.0.0",
@@ -23,6 +25,7 @@
     "svelte": "^3.0.0",
     "svelte-check": "^2.0.0",
     "svelte-preprocess": "^4.0.0",
+    "tailwindcss": "^3.0.2",
     "tslib": "^2.0.0",
     "typescript": "^4.0.0"
   },
@@ -30,7 +33,6 @@
     "@sveltestack/svelte-query": "^1.4.1",
     "axios": "^0.21.1",
     "luxon": "^2.0.1",
-    "sirv-cli": "^1.0.0",
-    "sveltestrap": "^5.5.1"
+    "sirv-cli": "^1.0.0"
   }
 }
