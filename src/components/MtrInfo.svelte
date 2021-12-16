@@ -19,8 +19,11 @@
       .flat()
   );
 
-  $: selectedLine = "TML";
-  $: selectedStation = "MEF";
+  const favoriteMTR = favoriteStore.getMTR();
+  const [firstFavoriteMTR] = favoriteMTR;
+
+  export let selectedLine = firstFavoriteMTR?.[0] ?? "TML";
+  export let selectedStation = firstFavoriteMTR?.[1] ?? "MEF";
   $: line = lines.find((line) => line.value === selectedLine);
   $: stations = line?.stations;
   $: favoriteActive = favoriteStore.containMTR({

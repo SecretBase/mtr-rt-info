@@ -40,7 +40,7 @@ export const favoriteStore = {
       store.set(MTR, mtr);
     }
   },
-  getMTR: store.get(MTR, []),
+  getMTR: () => store.get(MTR, []),
   containMTR: ({ line, station }) => {
     return store.get(MTR, []).some(([favLine, favStation]) => {
       return favLine === line && favStation === station;

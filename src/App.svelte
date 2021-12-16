@@ -10,9 +10,18 @@
 
   let lightRailStationId = 1;
 
+  let mtrLine: string;
+  let mtrStation: string;
+
   const onLightRailClick = (stationId: number) => {
     lightRailStationId = stationId;
     activeTabKey = "lightRail";
+  };
+
+  const onMTRClick = ({ line, station }) => {
+    mtrLine = line;
+    mtrStation = station;
+    activeTabKey = "mtr";
   };
 
   const onTabChange = (key: string) => {
@@ -28,12 +37,14 @@
         <Tab tabKey="lightRail">Light Rail</Tab>
         <Tab tabKey="mtr">MTR</Tab>
       </TabList>
-      <TabPanel key="favorite"><FavoriteList {onLightRailClick} /></TabPanel>
+      <TabPanel key="favorite"
+        ><FavoriteList {onMTRClick} {onLightRailClick} /></TabPanel
+      >
       <TabPanel key="lightRail">
         <LightRailInfo stationId={lightRailStationId} />
       </TabPanel>
       <TabPanel key="mtr">
-        <MtrInfo />
+        <MtrInfo selectedLine={mtrLine} selectedStation={mtrStation} />
       </TabPanel>
     </Tabs>
   </div>
