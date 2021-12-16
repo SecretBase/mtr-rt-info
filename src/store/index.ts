@@ -1,6 +1,7 @@
 import store from "store";
 
 const LIGHT_RAIL = "favorite-light-rail-v2";
+const MTR = "favorite-mtr";
 
 export const favoriteStore = {
   addLightRail: (stationId: number) => {
@@ -21,7 +22,28 @@ export const favoriteStore = {
     }
   },
   getLightRail: () => store.get(LIGHT_RAIL, []),
-  addMTR: () => {},
-  removeMTR: () => {},
-  getMTR: () => {},
+  addMTR: ({ line, station }) => {
+    const mtr = store.get(MTR, []);
+    if (!favoriteStore.containMTR({ line, station })) {
+      store.set(MTR, [...mtr, [line, station]]);
+    }
+  },
+  removeMTR: ({ line, station }) => {
+    const mtr = store.get(MTR, []);
+
+    const index = mtr.findIndex(
+      ([favLine, favStation]) => favLine === line && favStation === station
+    );
+
+    if (index >= 0) {
+      mtr.splice(index, 1);
+      store.set(MTR, mtr);
+    }
+  },
+  getMTR: store.get(MTR, []),
+  containMTR: ({ line, station }) => {
+    return store.get(MTR, []).some(([favLine, favStation]) => {
+      return favLine === line && favStation === station;
+    });
+  },
 };

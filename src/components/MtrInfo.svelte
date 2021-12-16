@@ -2,15 +2,14 @@
   import { DateTime } from "luxon";
   import type { UseQueryStoreResult } from "@sveltestack/svelte-query";
   import useMtrInfo from "../hooks/useMtrInfo";
+  import FavoriteStarButton from "./FavoriteStarButton.svelte";
   import type { MtrResponse } from "../hooks/useMtrInfo";
+  import { favoriteStore } from "../store/index";
 
   import data from "../data/mtr.json";
 
   const lines = data.lines;
 
-  const linesNameMap = new Map(
-    data.lines.map((line) => [line.value, line.name])
-  );
   const stationsNameMap = new Map(
     // @ts-expect-error
     data.lines
@@ -24,6 +23,10 @@
   $: selectedStation = "MEF";
   $: line = lines.find((line) => line.value === selectedLine);
   $: stations = line?.stations;
+  $: favoriteActive = favoriteStore.containMTR({
+    line: selectedLine,
+    station: selectedStation,
+  });
 
   function onSelectLine(e) {
     e.preventDefault();
@@ -33,7 +36,6 @@
     selectedStation = data.lines.find((line) => line.value === selectedLine)
       ?.stations[0].value;
   }
-
   function onSelectStation(e) {
     e.preventDefault();
     selectedStation = e.target.value;
@@ -57,6 +59,24 @@
 
   $: UP = routes?.UP;
   $: DOWN = routes?.DOWN;
+
+  const onFavoriteClick: svelte.JSX.MouseEventHandler<HTMLButtonElement> = (
+    e
+  ) => {
+    e.preventDefault();
+    if (
+      favoriteStore.containMTR({ line: selectedLine, station: selectedStation })
+    ) {
+      favoriteStore.removeMTR({ line: selectedLine, station: selectedStation });
+    } else {
+      favoriteStore.addMTR({ line: selectedLine, station: selectedStation });
+    }
+
+    favoriteActive = favoriteStore.containMTR({
+      line: selectedLine,
+      station: selectedStation,
+    });
+  };
 </script>
 
 <h3 class="mb-4 text-2xl">MTR</h3>
@@ -86,6 +106,8 @@
       >
     {/each}
   </select>
+
+  <FavoriteStarButton {onFavoriteClick} active={favoriteActive} />
 </div>
 
 <div class="justify-content-center">
