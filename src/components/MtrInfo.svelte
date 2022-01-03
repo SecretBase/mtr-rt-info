@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { DateTime } from "luxon";
+  import { differenceInMinutes, parse } from "date-fns";
   import type { UseQueryStoreResult } from "@sveltestack/svelte-query";
   import useMtrInfo from "../hooks/useMtrInfo";
   import FavoriteStarButton from "./FavoriteStarButton.svelte";
@@ -11,9 +11,8 @@
   const lines = data.lines;
 
   const stationsNameMap = new Map(
-    // @ts-expect-error
     data.lines
-      .map((line) =>
+      .map<[string, string][]>((line) =>
         line.stations.map((station) => [station.value, station.name])
       )
       .flat()
@@ -80,6 +79,16 @@
       station: selectedStation,
     });
   };
+
+  function getDifferentInMintues(time: string) {
+    return Math.max(
+      0,
+      differenceInMinutes(
+        parse(time, "yyyy-MM-dd HH:mm:ss", new Date()),
+        new Date()
+      )
+    );
+  }
 </script>
 
 <h3 class="mb-4 text-2xl">MTR</h3>
@@ -128,14 +137,7 @@
           <td class="w-1/5 py-2">{train.plat}號月台</td>
           <td class="py-2">{stationsNameMap.get(train.dest)}</td>
           <td class="w-1/5 text-right py-2"
-            >{Math.max(
-              0,
-              Math.floor(
-                DateTime.fromFormat(train.time, "yyyy-MM-dd HH:mm:ss")
-                  .diff(DateTime.now(), ["minutes"])
-                  .toObject().minutes
-              )
-            )} 分鐘</td
+            >{getDifferentInMintues(train.time)} 分鐘</td
           >
         </tr>
       {/each}
@@ -149,14 +151,7 @@
           <td class="w-1/5 py-2">{train.plat}號月台</td>
           <td class="py-2">{stationsNameMap.get(train.dest)}</td>
           <td class="w-1/5 text-right py-2"
-            >{Math.max(
-              0,
-              Math.floor(
-                DateTime.fromFormat(train.time, "yyyy-MM-dd HH:mm:ss")
-                  .diff(DateTime.now(), ["minutes"])
-                  .toObject().minutes
-              )
-            )} 分鐘</td
+            >{getDifferentInMintues(train.time)} 分鐘</td
           >
         </tr>
       {/each}
