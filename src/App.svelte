@@ -4,7 +4,13 @@
   import MtrInfo from "./components/MtrInfo.svelte";
   import FavoriteList from "./components/FavoriteList.svelte";
   import { Tabs, Tab, TabList, TabPanel } from "./components/Tabs/tabs.js";
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 3000,
+      },
+    },
+  });
 
   let activeTabKey = "favorite";
 
