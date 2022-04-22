@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { UseQueryStoreResult } from "@sveltestack/svelte-query";
+  import Select from "svelte-select";
   import useLightRailInfo from "../hooks/useLightRailInfo";
   import type { LightRailResponse } from "../hooks/useLightRailInfo";
   import FavoriteStarButton from "../components/FavoriteStarButton.svelte";
@@ -14,6 +15,15 @@
 
   const stations = data.stations;
 
+  $: items = stations.map((item) => {
+    return {
+      value: item.value,
+      label: item.name,
+    };
+  });
+
+  console.log(stations);
+
   let queryResults: UseQueryStoreResult<LightRailResponse>;
 
   $: {
@@ -24,7 +34,7 @@
 
   function onSelect(e) {
     e.preventDefault();
-    selectedStation = parseInt(e.target.value, 10);
+    selectedStation = parseInt(e.detail.value, 10);
   }
 
   function onFavoriteClick(e: Event) {
@@ -44,23 +54,13 @@
 
 <h3 class="mb-4 text-2xl">Light Rail</h3>
 <div class="flex gap-2 mb-4">
-  <select
-    class="border p-1.5 border-gray-400 rounded flex-1"
-    name="stationId"
-    id="select-station"
-    on:change={onSelect}
-  >
-    {#each stations as station (station.value)}
-      <option value={station.value} selected={selectedStation === station.value}
-        >{station.name}</option
-      >
-    {/each}
-  </select>
+  <Select containerClasses="flex-1" on:select={onSelect} {items} />
   <FavoriteStarButton
     active={lightRailFavorite.includes(selectedStation)}
     {onFavoriteClick}
   />
 </div>
+
 <div class="justify-content-center">
   <div class="d-flex justify-content-center">
     {#if $queryResults.isLoading} Loading ... {/if}
