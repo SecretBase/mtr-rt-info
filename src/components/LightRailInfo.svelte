@@ -52,13 +52,6 @@
   }
 
   $: selectedItem = items?.find(station => station.value === stationId)
-
-
-
-  $: {
-    console.log(selectedItem)
-  }
-
 </script>
 
 <h3 class="mb-4 text-2xl">Light Rail</h3>
