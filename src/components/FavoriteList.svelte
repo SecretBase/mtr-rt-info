@@ -2,13 +2,14 @@
   import { favoriteStore } from "../store/index";
   import lightRailData from "../data/lightRail.json";
   import MTRData from "../data/mtr.json";
+  import TrashIButton from "./TrashIButton.svelte";
 
   const lightRailStations = lightRailData.stations;
   const mtrStationsLines = MTRData.lines;
-  const favoriteLightRail = favoriteStore.getLightRail();
+  let favoriteLightRail = favoriteStore.getLightRail();
   const favoriteMTR = favoriteStore.getMTR();
 
-  let lightRailFavorties = lightRailStations.filter(({ value }) =>
+  $: lightRailFavorties = lightRailStations.filter(({ value }) =>
     favoriteLightRail.includes(value)
   );
 
@@ -33,13 +34,24 @@
 <h2>Light Rail</h2>
 <ul class="mb-4">
   {#each lightRailFavorties as lightRail}
-    <li class="mb-4">
-      <button
-        class="w-full border p-2"
-        on:click={() => onLightRailClick(lightRail.value)}
-      >
-        {lightRail.name}
-      </button>
+    <li class="mb-4 flex items-center text-center">
+      <div class="flex-1">
+        <button
+          class="w-full border p-2"
+          on:click={() => onLightRailClick(lightRail.value)}
+        >
+          {lightRail.name}
+        </button>
+      </div>
+      <div class="p-2">
+        <TrashIButton
+          class="w-4"
+          on:click={() => {
+            favoriteStore.removeLightRail(lightRail.value)
+            favoriteLightRail = favoriteStore.getLightRail()
+          }}
+        />
+      </div>
     </li>
   {/each}
 </ul>
