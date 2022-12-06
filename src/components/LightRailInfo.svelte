@@ -22,14 +22,14 @@
     };
   });
 
-  console.log(stations);
-
   let queryResults: UseQueryStoreResult<LightRailResponse>;
 
   $: {
     queryResults = useLightRailInfo({
       stationId: selectedStation,
     });
+
+    console.log(items)
   }
 
   function onSelect(e) {
@@ -50,11 +50,20 @@
 
     lightRailFavorite = favoriteStore.getLightRail();
   }
+
+  $: selectedItem = items?.find(station => station.value === stationId)
+
+
+
+  $: {
+    console.log(selectedItem)
+  }
+
 </script>
 
 <h3 class="mb-4 text-2xl">Light Rail</h3>
 <div class="flex gap-2 mb-4">
-  <Select containerClasses="flex-1" on:select={onSelect} {items} />
+  <Select containerClasses="flex-1" on:select={onSelect} {items} value={selectedItem} />
   <FavoriteStarButton
     active={lightRailFavorite.includes(selectedStation)}
     {onFavoriteClick}
