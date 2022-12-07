@@ -7,9 +7,9 @@
   const lightRailStations = lightRailData.stations;
   const mtrStationsLines = MTRData.lines;
   let favoriteLightRail = favoriteStore.getLightRail();
-  const favoriteMTR = favoriteStore.getMTR();
+  let favoriteMTR = favoriteStore.getMTR();
 
-  $: lightRailFavorties = lightRailStations.filter(({ value }) =>
+  $: lightRailFavorites = lightRailStations.filter(({ value }) =>
     favoriteLightRail.includes(value)
   );
 
@@ -31,9 +31,9 @@
   }) => void;
 </script>
 
-<h2>Light Rail</h2>
+<h2 class="mb-2">Light Rail</h2>
 <ul class="mb-4">
-  {#each lightRailFavorties as lightRail}
+  {#each lightRailFavorites as lightRail}
     <li class="mb-4 flex items-center text-center">
       <div class="flex-1">
         <button
@@ -47,8 +47,8 @@
         <TrashIButton
           class="w-4"
           on:click={() => {
-            favoriteStore.removeLightRail(lightRail.value)
-            favoriteLightRail = favoriteStore.getLightRail()
+            favoriteStore.removeLightRail(lightRail.value);
+            favoriteLightRail = favoriteStore.getLightRail();
           }}
         />
       </div>
@@ -56,17 +56,28 @@
   {/each}
 </ul>
 
-<h2>MTR</h2>
+<h2 class="mb-2">MTR</h2>
 
 <ul class="mb-4">
   {#each favoriteMTR as mtr}
-    <li class="mb-4">
-      <button
-        class="w-full border p-2"
-        on:click={() => onMTRClick({ line: mtr[0], station: mtr[1] })}
-      >
-        {mtrStations[mtr[1]]}
-      </button>
+    <li class="mb-4 flex items-center text-center">
+      <div class="flex-1">
+        <button
+          class="w-full border p-2"
+          on:click={() => onMTRClick({ line: mtr[0], station: mtr[1] })}
+        >
+          {mtrStations[mtr[1]]}
+        </button>
+      </div>
+      <div class="p-2">
+        <TrashIButton
+          class="w-4"
+          on:click={() => {
+            favoriteStore.removeMTR({ line: mtr[0], station: mtr[1] });
+            favoriteMTR = favoriteStore.getMTR();
+          }}
+        />
+      </div>
     </li>
   {/each}
 </ul>
