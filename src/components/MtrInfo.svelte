@@ -55,6 +55,8 @@
         enabled: Boolean(selectedStation && selectedLine),
       }
     );
+
+    console.log($queryResults.data);
   }
 
   $: routes = Object.values($queryResults?.data?.data ?? {})[0];
@@ -132,29 +134,32 @@
   <table class="mb-4 w-full table-fixed">
     <caption class="text-md py-2 text-gray-400 text-left">UP</caption>
     <tbody>
-      {#each UP as train}
-        <tr class="border-b">
-          <td class="w-1/5 py-2">{train.plat}號月台</td>
-          <td class="py-2">{stationsNameMap.get(train.dest)}</td>
-          <td class="w-1/5 text-right py-2"
-            >{getDifferentInMintues(train.time)} 分鐘</td
-          >
-        </tr>
-      {/each}
+      {#if UP}
+        {#each UP as train}
+          <tr class="border-b">
+            <td class="w-1/5 py-2">{train.plat}號月台</td>
+            <td class="py-2">{stationsNameMap.get(train.dest)}</td>
+            <td class="w-1/5 text-right py-2"
+              >{getDifferentInMintues(train.time)} 分鐘</td
+            >
+          </tr>
+        {/each}
+      {/if}
     </tbody>
   </table>
   <table class="w-full table-fixed">
     <caption class="text-md py-2 text-gray-400 text-left">DOWN</caption>
     <tbody>
-      {#each DOWN as train}
-        <tr class="border-b">
-          <td class="w-1/5 py-2">{train.plat}號月台</td>
-          <td class="py-2">{stationsNameMap.get(train.dest)}</td>
-          <td class="w-1/5 text-right py-2"
-            >{getDifferentInMintues(train.time)} 分鐘</td
-          >
-        </tr>
-      {/each}
+      {#if DOWN}
+        {#each DOWN as train}
+          <tr class="border-b">
+            <td class="w-1/5 py-2">{train.plat}號月台</td>
+            <td class="py-2">{stationsNameMap.get(train.dest)}</td>
+            <td class="w-1/5 text-right py-2"
+              >{getDifferentInMintues(train.time)} 分鐘</td
+            >
+          </tr>
+        {/each}{/if}
     </tbody>
   </table>
 {/if}
