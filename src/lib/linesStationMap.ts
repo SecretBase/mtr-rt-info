@@ -1,4 +1,4 @@
-import { EAL, ISL, SIL, TCL, TKL, TML, TWL, AEL } from '$lib/lines'
+import { EAL, ISL, SIL, TCL, TKL, TML, TWL, AEL, KTL, type LINE } from '$lib/lines';
 import {
 	ADM,
 	AIR,
@@ -6,6 +6,7 @@ import {
 	AWE,
 	CAB,
 	CEN,
+	CHH,
 	CHW,
 	CIO,
 	CKT,
@@ -27,16 +28,20 @@ import {
 	JOR,
 	KAT,
 	KET,
+	KOB,
 	KOT,
 	KOW,
 	KSR,
 	KWF,
 	KWH,
+	KWT,
 	LAK,
+	LAT,
 	LCK,
 	LET,
 	LHP,
 	LMC,
+	LOF,
 	LOP,
 	LOW,
 	MEF,
@@ -45,6 +50,7 @@ import {
 	MOS,
 	NAC,
 	NOP,
+	NTK,
 	OCP,
 	OLY,
 	POA,
@@ -56,6 +62,7 @@ import {
 	SHT,
 	SHW,
 	SIH,
+	SKM,
 	SKW,
 	SOH,
 	SSP,
@@ -84,13 +91,16 @@ import {
 	UNI,
 	WAC,
 	WCH,
+	WHA,
 	WKS,
+	WTS,
 	YAT,
 	YMT,
 	YUL,
-} from '$lib/stations'
+	type STATION
+} from '$lib/stations';
 
-export const lineStationsMap = {
+export const lineStationsMap: Record<LINE, STATION[]> = {
 	[AEL]: [HOK, KOW, TSY, AIR, AWE],
 	[TCL]: [HOK, KOW, OLY, NAC, LAK, TSY, SUN, TUC],
 	[TML]: [
@@ -120,11 +130,12 @@ export const lineStationsMap = {
 		LOP,
 		TIS,
 		SIH,
-		TUM,
+		TUM
 	],
 	[TKL]: [NOP, QUB, YAT, TIK, TKO, LHP, HAH, POA],
 	[EAL]: [ADM, EXC, HUH, MKK, KOT, TAW, SHT, FOT, RAC, UNI, TAP, TWO, FAN, SHS, LOW, LMC],
 	[SIL]: [ADM, OCP, WCH, LET, SOH],
 	[TWL]: [CEN, ADM, TST, JOR, YMT, MOK, PRE, SSP, CSW, LCK, MEF, LAK, KWF, KWH, TWH, TSW],
 	[ISL]: [KET, HKU, SYP, SHW, CEN, ADM, WAC, CAB, TIH, FOH, NOP, QUB, TAK, SWH, SKW, HFC, CHW],
-}
+	[KTL]: [WHA, HOM, YMT, MOK, PRE, SKM, KOT, LOF, WTS, DIH, CHH, KOB, NTK, KWT, LAT, YAT, TIK]
+};
