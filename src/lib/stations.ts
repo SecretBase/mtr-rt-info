@@ -195,296 +195,393 @@ export type STATION =
 	| typeof YMT
 	| typeof YUL;
 
-export const stationsConfig: Record<STATION, { name: string }> = {
+export const stationsConfig: Record<STATION, { name: string; tcName: string }> = {
 	[ADM]: {
-		name: 'Admiralty'
+		name: 'Admiralty',
+		tcName: '金鐘'
 	},
 	[AIR]: {
-		name: 'Airport'
+		name: 'Airport',
+		tcName: '香港國際機場'
 	},
 	[AUS]: {
-		name: 'Austin'
+		name: 'Austin',
+		tcName: '柯士甸'
 	},
 	[AWE]: {
-		name: 'AsiaWorld Expo'
+		name: 'AsiaWorld Expo',
+		tcName: '亞洲國際博覽館'
 	},
 	[CAB]: {
-		name: 'Causeway Bay'
+		name: 'Causeway Bay',
+		tcName: '銅鑼灣'
 	},
 	[CEN]: {
-		name: 'Central'
+		name: 'Central',
+		tcName: '中環'
 	},
 	[CHH]: {
-		name: 'Choi Hung'
+		name: 'Choi Hung',
+		tcName: '彩虹'
 	},
 	[CHW]: {
-		name: 'Chai Wan'
+		name: 'Chai Wan',
+		tcName: '柴灣'
 	},
 	[CIO]: {
-		name: 'City One'
+		name: 'City One',
+		tcName: '第一城'
 	},
 	[CKT]: {
-		name: 'Che Kung Temple'
+		name: 'Che Kung Temple',
+		tcName: '車公廟'
 	},
 	[CSW]: {
-		name: 'Cheung Sha Wan'
+		name: 'Cheung Sha Wan',
+		tcName: '長沙灣'
 	},
 	[DIH]: {
-		name: 'Diamond Hill'
+		name: 'Diamond Hill',
+		tcName: '鑽石山'
 	},
 	[ETS]: {
-		name: 'East Tsim Sha Tsui'
+		name: 'East Tsim Sha Tsui',
+		tcName: '尖東'
 	},
 	[EXC]: {
-		name: 'Exhibition Centre'
+		name: 'Exhibition Centre',
+		tcName: '會展'
 	},
 	[FAN]: {
-		name: 'Fanling'
+		name: 'Fanling',
+		tcName: '粉嶺'
 	},
 	[FOH]: {
-		name: 'Fortress Hill'
+		name: 'Fortress Hill',
+		tcName: '砲台山'
 	},
 	[FOT]: {
-		name: 'Fo Tan'
+		name: 'Fo Tan',
+		tcName: '火炭'
 	},
 	[HAH]: {
-		name: 'Hang Hau'
+		name: 'Hang Hau',
+		tcName: '坑口'
 	},
 	[HEO]: {
-		name: 'Heng On'
+		name: 'Heng On',
+		tcName: '恒安'
 	},
 	[HFC]: {
-		name: 'Heng Fa Chuen'
+		name: 'Heng Fa Chuen',
+		tcName: '杏花村'
 	},
 	[HIK]: {
-		name: 'Hin Keng'
+		name: 'Hin Keng',
+		tcName: '顯徑'
 	},
 	[HKU]: {
-		name: 'HKU'
+		name: 'HKU',
+		tcName: '香港大學'
 	},
 	[HOK]: {
-		name: 'Hong Kong'
+		name: 'Hong Kong',
+		tcName: '香港'
 	},
 	[HOM]: {
-		name: 'Ho Man Tin'
+		name: 'Ho Man Tin',
+		tcName: '何文田'
 	},
 	[HUH]: {
-		name: 'Hung Hom'
+		name: 'Hung Hom',
+		tcName: '紅磡'
 	},
 	[JOR]: {
-		name: 'Jordan'
+		name: 'Jordan',
+		tcName: '佐敦'
 	},
 	[KAT]: {
-		name: 'Kai Tak'
+		name: 'Kai Tak',
+		tcName: '啟德'
 	},
 	[KET]: {
-		name: 'Kennedy Town'
+		name: 'Kennedy Town',
+		tcName: '堅尼地城'
 	},
 	[KOB]: {
-		name: 'Kowloon Bay'
+		name: 'Kowloon Bay',
+		tcName: '九龍灣'
 	},
 	[KOT]: {
-		name: 'Kowloon Tong'
+		name: 'Kowloon Tong',
+		tcName: '九龍塘'
 	},
 	[KOW]: {
-		name: 'Kowloon'
+		name: 'Kowloon',
+		tcName: '九龍'
 	},
 	[KSR]: {
-		name: 'Kam Sheung Road'
+		name: 'Kam Sheung Road',
+		tcName: '錦上路'
 	},
 	[KWF]: {
-		name: 'Kwai Fong'
+		name: 'Kwai Fong',
+		tcName: '葵芳'
 	},
 	[KWH]: {
-		name: 'Kwai Hing'
+		name: 'Kwai Hing',
+		tcName: '葵興'
 	},
 	[KWT]: {
-		name: 'Kwun Tong'
+		name: 'Kwun Tong',
+		tcName: '觀塘'
 	},
 	[LAK]: {
-		name: 'Lai King'
+		name: 'Lai King',
+		tcName: '荔景'
 	},
 	[LAT]: {
-		name: 'Lam Tin'
+		name: 'Lam Tin',
+		tcName: '藍田'
 	},
 	[LCK]: {
-		name: 'Lai Chi Kok'
+		name: 'Lai Chi Kok',
+		tcName: '荔枝角'
 	},
 	[LET]: {
-		name: 'Lei Tung'
+		name: 'Lei Tung',
+		tcName: '利東'
 	},
 	[LHP]: {
-		name: 'LOHAS Park'
+		name: 'LOHAS Park',
+		tcName: '日出康城'
 	},
 	[LMC]: {
-		name: 'Lok Ma Chau'
+		name: 'Lok Ma Chau',
+		tcName: '落馬洲'
 	},
 	[LOF]: {
-		name: 'Lok Fu'
+		name: 'Lok Fu',
+		tcName: '樂富'
 	},
 	[LOP]: {
-		name: 'Long Ping'
+		name: 'Long Ping',
+		tcName: '朗屏'
 	},
 	[LOW]: {
-		name: 'Lo Wu'
+		name: 'Lo Wu',
+		tcName: '羅湖'
 	},
 	[MEF]: {
-		name: 'Mei Foo'
+		name: 'Mei Foo',
+		tcName: '美孚'
 	},
 	[MKK]: {
-		name: 'Mong Kok East'
+		name: 'Mong Kok East',
+		tcName: '旺角東'
 	},
 	[MOK]: {
-		name: 'Mong Kok'
+		name: 'Mong Kok',
+		tcName: '旺角'
 	},
 	[MOS]: {
-		name: 'Ma On Shan'
+		name: 'Ma On Shan',
+		tcName: '馬鞍山'
 	},
 	[NAC]: {
-		name: 'Nam Cheong'
+		name: 'Nam Cheong',
+		tcName: '南昌'
 	},
 	[NOP]: {
-		name: 'North Point'
+		name: 'North Point',
+		tcName: '北角'
 	},
 	[NTK]: {
-		name: 'Ngau Tau Kok'
+		name: 'Ngau Tau Kok',
+		tcName: '牛頭角'
 	},
 	[OCP]: {
-		name: 'Ocean Park'
+		name: 'Ocean Park',
+		tcName: '海洋公園'
 	},
 	[OLY]: {
-		name: 'Olympic'
+		name: 'Olympic',
+		tcName: '奧運'
 	},
 	[POA]: {
-		name: 'Po Lam'
+		name: 'Po Lam',
+		tcName: '寶琳'
 	},
 	[PRE]: {
-		name: 'Prince Edward'
+		name: 'Prince Edward',
+		tcName: '太子'
 	},
 	[QUB]: {
-		name: 'Quarry Bay'
+		name: 'Quarry Bay',
+		tcName: '鰂魚湧'
 	},
 	[RAC]: {
-		name: 'Racecourse'
+		name: 'Racecourse',
+		tcName: '馬場'
 	},
 	[SHM]: {
-		name: 'Shek Mun'
+		name: 'Shek Mun',
+		tcName: '石門'
 	},
 	[SHS]: {
-		name: 'Sheung Shui'
+		name: 'Sheung Shui',
+		tcName: '上水'
 	},
 	[SHT]: {
-		name: 'Sha Tin'
+		name: 'Sha Tin',
+		tcName: '沙田'
 	},
 	[SHW]: {
-		name: 'Sheung Wan'
+		name: 'Sheung Wan',
+		tcName: '上環'
 	},
 	[SIH]: {
-		name: 'Siu Hong'
+		name: 'Siu Hong',
+		tcName: '兆康'
 	},
 	[SKM]: {
-		name: 'Shek Kip Mei'
+		name: 'Shek Kip Mei',
+		tcName: '石硤尾'
 	},
 	[SKW]: {
-		name: 'Shau Kei Wan'
+		name: 'Shau Kei Wan',
+		tcName: '筲箕灣'
 	},
 	[SOH]: {
-		name: 'South Horizons'
+		name: 'South Horizons',
+		tcName: '海怡半島'
 	},
 	[SSP]: {
-		name: 'Sham Shui Po'
+		name: 'Sham Shui Po',
+		tcName: '深水埗'
 	},
 	[STW]: {
-		name: 'Sha Tin Wai'
+		name: 'Sha Tin Wai',
+		tcName: '沙田圍'
 	},
 	[SUN]: {
-		name: 'Sunny Bay'
+		name: 'Sunny Bay',
+		tcName: '欣澳'
 	},
 	[SUW]: {
-		name: 'Sung Wong Toi'
+		name: 'Sung Wong Toi',
+		tcName: '宋皇臺'
 	},
 	[SWH]: {
-		name: 'Sai Wan Ho'
+		name: 'Sai Wan Ho',
+		tcName: '西灣河'
 	},
 	[SYP]: {
-		name: 'Sai Ying Pun'
+		name: 'Sai Ying Pun',
+		tcName: '西營盤'
 	},
 	[TAK]: {
-		name: 'Tai Koo'
+		name: 'Tai Koo',
+		tcName: '太古'
 	},
 	[TAP]: {
-		name: 'Tai Po Market'
+		name: 'Tai Po Market',
+		tcName: '大埔墟'
 	},
 	[TAW]: {
-		name: 'Tai Wai'
+		name: 'Tai Wai',
+		tcName: '大圍'
 	},
 	[TIH]: {
-		name: 'Tin Hau'
+		name: 'Tin Hau',
+		tcName: '天后'
 	},
 	[TIK]: {
-		name: 'Tiu Keng Leng'
+		name: 'Tiu Keng Leng',
+		tcName: '調景嶺'
 	},
 	[TIS]: {
-		name: 'Tin Shui Wai'
+		name: 'Tin Shui Wai',
+		tcName: '天水圍'
 	},
 	[TKO]: {
-		name: 'Tseung Kwan O'
+		name: 'Tseung Kwan O',
+		tcName: '將軍澳'
 	},
 	[TKW]: {
-		name: 'To Kwa Wan'
+		name: 'To Kwa Wan',
+		tcName: '土瓜灣'
 	},
 	[TSH]: {
-		name: 'Tai Shui Hang'
+		name: 'Tai Shui Hang',
+		tcName: '大水坑'
 	},
 	[TST]: {
-		name: 'Tsim Sha Tsui'
+		name: 'Tsim Sha Tsui',
+		tcName: '尖沙咀'
 	},
 	[TSW]: {
-		name: 'Tsuen Wan'
+		name: 'Tsuen Wan',
+		tcName: '荃灣'
 	},
 	[TSY]: {
-		name: 'Tsing Yi'
+		name: 'Tsing Yi',
+		tcName: '青衣'
 	},
 	[TUC]: {
-		name: 'Tung Chung'
+		name: 'Tung Chung',
+		tcName: '東涌'
 	},
 	[TUM]: {
-		name: 'Tuen Mun'
+		name: 'Tuen Mun',
+		tcName: '屯門'
 	},
 	[TWH]: {
-		name: 'Tai Wo Hau'
+		name: 'Tai Wo Hau',
+		tcName: '大窩口'
 	},
 	[TWO]: {
-		name: 'Tai Wo'
+		name: 'Tai Wo',
+		tcName: '太和'
 	},
 	[TWW]: {
-		name: 'Tsuen Wan West'
+		name: 'Tsuen Wan West',
+		tcName: '荃灣西'
 	},
 	[UNI]: {
-		name: 'University'
+		name: 'University',
+		tcName: '大學'
 	},
 	[WAC]: {
-		name: 'Wan Chai'
+		name: 'Wan Chai',
+		tcName: '灣仔'
 	},
 	[WCH]: {
-		name: 'Wong Chuk Hang'
+		name: 'Wong Chuk Hang',
+		tcName: '黃竹坑'
 	},
 	[WHA]: {
-		name: 'Whampoa'
+		name: 'Whampoa',
+		tcName: '黃埔'
 	},
 	[WKS]: {
-		name: 'Wu Kai Sha'
+		name: 'Wu Kai Sha',
+		tcName: '烏溪沙'
 	},
 	[WTS]: {
-		name: 'Wong Tai Sin'
+		name: 'Wong Tai Sin',
+		tcName: '黃大仙'
 	},
 	[YAT]: {
-		name: 'Yau Tong'
+		name: 'Yau Tong',
+		tcName: '油塘'
 	},
 	[YMT]: {
-		name: 'Yau Ma Tei'
+		name: 'Yau Ma Tei',
+		tcName: '油麻地'
 	},
 	[YUL]: {
-		name: 'Yuen Long'
+		name: 'Yuen Long',
+		tcName: '元朗'
 	}
 } as const;

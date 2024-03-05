@@ -9,12 +9,16 @@
 	const stations = lineStationsMap[$page.params.line as LINE];
 </script>
 
+<svelte:head>
+	<title>{linesConfig[$page.params.line as LINE].tcName}</title>
+</svelte:head>
+
 <main class="max-w-80 mx-auto container grid pt-4">
 	<h1
 		class="p-3 border-l-8 border-[var(--line-color)] shadow-md rounded-md block"
 		style={`--line-color: ${linesConfig[$page.params.line as LINE].color}`}
 	>
-		{linesConfig[$page.params.line as LINE].name}
+		{linesConfig[$page.params.line as LINE].tcName}
 	</h1>
 
 	<ul class="grid">
@@ -33,7 +37,7 @@
 						)}
 						style={`--line-color: ${linesConfig[$page.params.line as LINE].color}`}
 					></span>
-					{stationsConfig[station].name}
+					{stationsConfig[station].tcName}
 				</a>
 			</li>
 		{/each}
