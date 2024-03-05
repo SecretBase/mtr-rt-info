@@ -12,6 +12,10 @@
 	);
 </script>
 
+<svelte:head>
+	<title>MTR</title>
+</svelte:head>
+
 <main class="container max-w-80 mx-auto grid gap-4">
 	<input
 		type="text"
@@ -21,12 +25,12 @@
 	/>
 
 	<ul class="contents">
-		{#each filteredLine as [line, { name, color }]}
+		{#each filteredLine as [line, { tcName, color }]}
 			<li>
 				<a
 					class="p-3 border-l-8 border-[var(--line-color)] shadow-md rounded-md block"
 					style={`--line-color: ${color}`}
-					href={`/line/${line}`}>{name}</a
+					href={`/line/${line}`}>{tcName}</a
 				>
 			</li>
 		{/each}
