@@ -43,7 +43,7 @@
 		class="p-3 border-l-8 border-[var(--line-color)] shadow-md rounded-md block"
 		style={`--line-color: ${linesConfig[$page.params.line as LINE].color}`}
 	>
-		<a href={`/line/${$page.params.line}`}>
+		<a href={`/mtr/line/${$page.params.line}`}>
 			{stationsConfig[$page.params.station as STATION].tcName} ({linesConfig[$page.params.line as LINE].tcName})
 		</a>
 	</h1>
