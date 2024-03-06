@@ -26,7 +26,7 @@
 			<li>
 				<a
 					class="flex py-4 pr-4 items-center gap-4 relative isolate"
-					href={`/line/${$page.params.line}/station/${station}`}
+					href={`/mtr/line/${$page.params.line}/station/${station}`}
 				>
 					<span class="w-5 h-5 border-4 border-black rounded-full block z-30 bg-white"></span>
 					<span
