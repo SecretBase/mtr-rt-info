@@ -38,9 +38,9 @@
 	<ETA etaTime={train.time} />
 {/snippet}
 
-<main class="max-w-80 mx-auto container grid pt-4 gap-6">
+<div class="grid gap-4 h-full grid-rows-[min-content_1fr]">
 	<h1
-		class="p-3 border-l-8 border-[var(--line-color)] shadow-md rounded-md block"
+		class="p-3 border-l-8 border-[var(--line-color)] shadow-md rounded-md block border-y border-y-gray-200 border-r border-r-gray-200"
 		style={`--line-color: ${linesConfig[$page.params.line as LINE].color}`}
 	>
 		<a href={`/mtr/line/${$page.params.line}`}>
@@ -48,28 +48,34 @@
 		</a>
 	</h1>
 
-	{#if $query.isLoading}
-		Loading ...
-	{:else if $query.data?.data}
-		{#if $query.data?.data[`${$page.params.line as LINE}-${$page.params.station as STATION}`].UP}
-			<ul class="grid gap-3 [&+hr]:block">
-				{#each $query.data?.data[`${$page.params.line as LINE}-${$page.params.station as STATION}`].UP ?? [] as train}
-					<li class="p-3 shadow-md rounded-md flex items-center gap-2 border-1 border-gray-700">
-						{@render etaInfo(train)}
-					</li>
-				{/each}
-			</ul>
-		{/if}
-
-		{#if $query.data?.data[`${$page.params.line as LINE}-${$page.params.station as STATION}`].DOWN}
-			<hr class="hidden" />
+	<div class="grid gap-4 overflow-y-auto py-4 auto-rows-min">
+		{#if $query.isLoading}
 			<ul class="grid gap-3">
-				{#each $query.data?.data[`${$page.params.line as LINE}-${$page.params.station as STATION}`].DOWN ?? [] as train}
-					<li class="p-3 shadow-md rounded-md flex items-center gap-2 border-1 border-gray-700">
-						{@render etaInfo(train)}
-					</li>
-				{/each}
+				<li class="h-12 shadow-md border rounded-md bg-gray-200 border-gray-200 animate-pulse"></li>
+				<li class="h-12 shadow-md border rounded-md bg-gray-200 border-gray-200 animate-pulse"></li>
+				<li class="h-12 shadow-md border rounded-md bg-gray-200 border-gray-200 animate-pulse"></li>
 			</ul>
+		{:else if $query.data?.data}
+			{#if $query.data?.data[`${$page.params.line as LINE}-${$page.params.station as STATION}`].UP}
+				<ul class="grid gap-3 [&+hr]:block">
+					{#each $query.data?.data[`${$page.params.line as LINE}-${$page.params.station as STATION}`].UP ?? [] as train}
+						<li class="p-3 shadow-md rounded-md flex items-center gap-2 border border-gray-200">
+							{@render etaInfo(train)}
+						</li>
+					{/each}
+				</ul>
+			{/if}
+
+			{#if $query.data?.data[`${$page.params.line as LINE}-${$page.params.station as STATION}`].DOWN}
+				<hr class="hidden mx-16 border-gray-400 border-dashed" />
+				<ul class="grid gap-3">
+					{#each $query.data?.data[`${$page.params.line as LINE}-${$page.params.station as STATION}`].DOWN ?? [] as train}
+						<li class="p-3 shadow-md rounded-md flex items-center gap-2 border border-gray-200">
+							{@render etaInfo(train)}
+						</li>
+					{/each}
+				</ul>
+			{/if}
 		{/if}
-	{/if}
-</main>
+	</div>
+</div>
