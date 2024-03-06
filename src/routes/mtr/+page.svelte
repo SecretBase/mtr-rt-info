@@ -8,16 +8,16 @@
 	<title>MTR</title>
 </svelte:head>
 
-<main class="container max-w-80 mx-auto grid gap-4">
+<div class="grid gap-4 h-full overflow-y-auto pb-4 auto-rows-min">
 	<ul class="contents">
 		{#each filteredLine as [line, { tcName, color }]}
 			<li>
 				<a
-					class="p-3 border-l-8 border-[var(--line-color)] shadow-md rounded-md block"
+					class="p-3 border-l-8 border-[var(--line-color)] shadow-md rounded-md block border-y border-y-gray-200 border-r border-r-gray-200"
 					style={`--line-color: ${color}`}
 					href={`/mtr/line/${line}`}>{tcName}</a
 				>
 			</li>
 		{/each}
 	</ul>
-</main>
+</div>

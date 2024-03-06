@@ -5,6 +5,6 @@ export function getDifferentInMinutesByTimeStamp(time: number | string) {
 }
 
 export function isArrivalTimeLessThenOneMinutes(etaDate: Date) {
-	const ONE_MINUTE = 2;
+	const ONE_MINUTE = 1;
 	return getDifferentInMinutesByTimeStamp(etaDate.getTime()) <= ONE_MINUTE;
 }
