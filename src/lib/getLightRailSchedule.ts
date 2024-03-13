@@ -23,9 +23,13 @@ export const getLightRailSchedule = ({
 }: {
 	station: keyof typeof lightRailStationsConfig;
 }) => {
-	const url = new URL('https://rt.data.gov.hk/v1/transport/mtr/getSchedule.php');
+	const url = new URL('https://rt.data.gov.hk/v1/transport/mtr/lrt/getSchedule');
 
-	url.searchParams.append('station_id', station);
+	url.searchParams.append(
+		'station_id',
+		// @ts-expect-error - this type is correct
+		station
+	);
 
 	return fetch(url).then((res) => res.json() as Promise<LightRailResponse>);
 };

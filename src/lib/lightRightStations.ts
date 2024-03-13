@@ -272,3 +272,43 @@ export const lightRailStationsConfig = {
 		tcName: '三聖'
 	}
 };
+
+export const lightRailRoute: Record<string, { color: string }> = {
+	'505': {
+		color: '#da2128'
+	},
+	'507': {
+		color: '#00a650'
+	},
+	'507P': {
+		color: '#00a650'
+	},
+	'614P': {
+		color: '#f4858d'
+	},
+	'615P': {
+		color: '#006684'
+	},
+	'610': {
+		color: '#551b14'
+	},
+	'614': {
+		color: '#00c0f3'
+	},
+	'615': {
+		color: '#ffdd00'
+	},
+	'751': {
+		color: '#f5821f'
+	},
+	'705': {
+		color: '#72bf44'
+	},
+	'751P': {
+		color: '#000000'
+	},
+	'761P': {
+		color: '#6f2b91'
+	},
+	'706': { color: '#b27ab4' }
+};
