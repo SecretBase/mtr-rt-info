@@ -4,7 +4,7 @@
 	import { stationsConfig, type STATION } from '$lib/stations';
 	import { page } from '$app/stores';
 	import { createQuery } from '@tanstack/svelte-query';
-	import { getMTRSchedule } from '$lib/getMTRSchedule.js';
+	import { getMTRSchedule } from '$lib/getMTRSchedule';
 
 	const query = createQuery({
 		queryKey: ['getMTRSchedule', $page.params.line, $page.params.station],
