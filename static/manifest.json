@@ -1,6 +1,6 @@
 {
 	"name": "MTR ETA",
-	"short_name": "Bus ETA",
+	"short_name": "MTR ETA",
 	"theme_color": "#fcd34d",
 	"background_color": "#fffbeb",
 	"display": "standalone",
