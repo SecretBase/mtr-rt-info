@@ -22,11 +22,15 @@
 </script>
 
 <QueryClientProvider client={data.queryClient}>
-	<div class="grid grid-cols-[1fr_calc(375px-2rem)_1fr] grid-rows-1 h-dvh">
+	<div
+		class="grid grid-cols-[1fr_calc(375px-2rem)_1fr] grid-rows-[minmax(0,1fr)_calc(40px+env(safe-area-inset-bottom,20px))] h-dvh"
+	>
 		<main class="col-start-2 pt-4 overflow-hidden">
 			<slot />
 		</main>
-		<nav class="col-start-1 col-span-3 grid-cols-subgrid grid bg-amber-300 h-10">
+		<nav
+			class="col-start-1 col-span-3 grid-cols-subgrid grid bg-amber-300 pb-[env(safe-area-inset-bottom,20px)]"
+		>
 			<ul class="col-start-2 grid grid-cols-2 text-center">
 				<li class="contents">
 					<a
