@@ -4,6 +4,8 @@
 	import { getLightRailSchedule } from '$lib/getLightRailSchedule';
 	import { lightRailStationsConfig, lightRailRoute } from '$lib/lightRightStations';
 	import { cn } from '$lib/cn';
+	import BookmarkButton from '$lib/components/BookmarkButton.svelte';
+	import { bookmarkStore } from '$lib/bookmarkStore.svelte';
 
 	const station = $page.params.station as unknown as keyof typeof lightRailStationsConfig;
 
@@ -22,13 +24,17 @@
 </script>
 
 <div class="grid gap-4 h-full grid-rows-[max-content_1fr]">
-	<h1>
-		<a
-			class="p-3 border-l-8 shadow-md rounded-md block border border-gray-200 border-l-amber-300 dark:border-l-amber-300 dark:border-gray-600 dark:bg-dark-200"
-			href={`/lr`}
-		>
+	<h1
+		class="p-3 border-l-8 shadow-md rounded-md border border-gray-200 border-l-amber-300 dark:border-l-amber-300 dark:border-gray-600 dark:bg-dark-200 flex items-center gap-1"
+	>
+		<a href={`/lr`} class="flex-grow">
 			{lightRailStationsConfig[station].tcName}
 		</a>
+		<BookmarkButton
+			active={bookmarkStore.hasBookmark({ type: 'lightRail', station })}
+			type="lightRail"
+			{station}
+		/>
 	</h1>
 
 	<div class="grid gap-4 overflow-y-auto py-4 auto-rows-min">

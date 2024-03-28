@@ -5,6 +5,8 @@
 	import { page } from '$app/stores';
 	import { createQuery } from '@tanstack/svelte-query';
 	import { getMTRSchedule } from '$lib/getMTRSchedule';
+	import BookmarkButton from '$lib/components/BookmarkButton.svelte';
+	import { bookmarkStore } from '$lib/bookmarkStore.svelte';
 
 	const query = createQuery({
 		queryKey: ['getMTRSchedule', $page.params.line, $page.params.station],
@@ -40,12 +42,18 @@
 
 <div class="grid gap-4 h-full grid-rows-[min-content_1fr]">
 	<h1
-		class="p-3 border-l-8 border-[var(--line-color)] shadow-md rounded-md block border-y border-y-gray-200 border-r border-r-gray-200 dark:border-y-gray-600 dark:border-r-gray-600 dark:bg-dark-200"
+		class="p-3 border-l-8 border-[var(--line-color)] shadow-md rounded-md flex gap-2 items-center border-y border-y-gray-200 border-r border-r-gray-200 dark:border-y-gray-600 dark:border-r-gray-600 dark:bg-dark-200"
 		style={`--line-color: ${linesConfig[$page.params.line as LINE].color}`}
 	>
-		<a href={`/mtr/line/${$page.params.line}`}>
+		<a href={`/mtr/line/${$page.params.line}`} class="flex-grow">
 			{stationsConfig[$page.params.station as STATION].tcName} ({linesConfig[$page.params.line as LINE].tcName})
 		</a>
+		<BookmarkButton
+			active={bookmarkStore.hasBookmark({ type: 'mtr', line: $page.params.line as LINE, station: $page.params.station as STATION })}
+			type="mtr"
+			line={$page.params.line as LINE}
+			station={$page.params.station as STATION}
+		/>
 	</h1>
 
 	<div class="grid gap-4 overflow-y-auto py-4 auto-rows-min">
