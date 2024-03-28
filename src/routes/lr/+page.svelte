@@ -39,7 +39,7 @@
 <div class="grid gap-4 h-full grid-rows-[max-content_1fr]">
 	<input
 		type="search"
-		class="border border-gray-200 rounded-md p-3 w-full"
+		class="border border-gray-200 dark:border-gray-600 dark:bg-dark-200 rounded-md p-3 w-full"
 		placeholder="搜尋站名"
 		oninput={onInput}
 		bind:value={filterInput}
@@ -50,7 +50,7 @@
 			<li class="contents">
 				<a
 					href={`/lr/station/${stationId}`}
-					class="border border-gray-200 rounded-md p-3 shadow-md"
+					class="border border-gray-200 dark:border-gray-600 dark:bg-dark-200 rounded-md p-3 shadow-md"
 				>
 					{tcName}
 				</a>

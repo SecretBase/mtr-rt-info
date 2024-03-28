@@ -29,14 +29,14 @@
 			<slot />
 		</main>
 		<nav
-			class="col-start-1 col-span-3 grid-cols-subgrid grid bg-amber-300 pb-[env(safe-area-inset-bottom,20px)]"
+			class="col-start-1 col-span-3 grid-cols-subgrid grid bg-amber-300 pb-[env(safe-area-inset-bottom,20px)] dark:bg-dark-300"
 		>
 			<ul class="col-start-2 grid grid-cols-2 text-center">
 				<li class="contents">
 					<a
 						class={cn(
-							'flex items-center justify-center w-full h-full hover:bg-amber-400 active:bg-amber-500',
-							$page.url.pathname.startsWith('/mtr') && 'bg-amber-500'
+							'flex items-center justify-center w-full h-full dark:hover:text-black dark:active:text-black hover:bg-amber-400 active:bg-amber-500',
+							$page.url.pathname.startsWith('/mtr') && 'bg-amber-500 dark:text-black'
 						)}
 						href="/mtr"
 					>
@@ -46,8 +46,8 @@
 				<li class="contents">
 					<a
 						class={cn(
-							'flex items-center justify-center w-full h-full hover:bg-amber-400 active:bg-amber-500',
-							$page.url.pathname.startsWith('/lr') && 'bg-amber-500'
+							'flex items-center justify-center w-full h-full dark:hover:text-black dark:active:text-black hover:bg-amber-400 active:bg-amber-500',
+							$page.url.pathname.startsWith('/lr') && 'bg-amber-500 dark:text-black'
 						)}
 						href="/lr"
 					>

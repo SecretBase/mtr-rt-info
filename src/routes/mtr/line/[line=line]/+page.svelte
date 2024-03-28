@@ -38,7 +38,7 @@
 
 <div class="grid h-full gap-4 grid-rows-[min-content_1fr]">
 	<h1
-		class="p-3 border-l-8 border-[var(--line-color)] shadow-md rounded-md border-y border-y-gray-200 border-r border-r-gray-200 flex justify-between items-center"
+		class="p-3 border-l-8 border-[var(--line-color)] shadow-md rounded-md border-y border-y-gray-200 border-r border-r-gray-200 dark:border-y-gray-600 dark:border-r-gray-600 dark:bg-dark-200 flex justify-between items-center"
 		style={`--line-color: ${linesConfig[$page.params.line as LINE].color}`}
 	>
 		{linesConfig[$page.params.line as LINE].tcName}

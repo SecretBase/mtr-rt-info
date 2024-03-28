@@ -24,7 +24,7 @@
 <div class="grid gap-4 h-full grid-rows-[max-content_1fr]">
 	<h1>
 		<a
-			class="p-3 border-l-8 shadow-md rounded-md block border border-gray-200 border-l-amber-300"
+			class="p-3 border-l-8 shadow-md rounded-md block border border-gray-200 border-l-amber-300 dark:border-l-amber-300 dark:border-gray-600 dark:bg-dark-200"
 			href={`/lr`}
 		>
 			{lightRailStationsConfig[station].tcName}
@@ -46,7 +46,7 @@
 						<ol class="grid gap-3">
 							{#each platform.route_list as route}
 								<li
-									class="p-3 border border-l-8 rounded-md shadow-md grid grid-cols-3 border-l-[var(--line-color)]"
+									class="p-3 border border-l-8 rounded-md shadow-md grid grid-cols-3 border-l-[var(--line-color)] dark:border-l-[var(--line-color)] dark:border-gray-600 dark:bg-dark-200"
 									style={lightRailRoute[route.route_no]?.color
 										? `--line-color: ${lightRailRoute[route.route_no]?.color}`
 										: undefined}
