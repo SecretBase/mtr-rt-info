@@ -3,13 +3,12 @@
 	import { lightRailStationsConfig } from '$lib/lightRightStations';
 	import { linesConfig } from '$lib/lines';
 	import { stationsConfig } from '$lib/stations';
+	import { isServer } from '@tanstack/svelte-query';
 
 	const mtrStations = $derived(bookmarkStore.bookmarks.filter(({ type }) => type === 'mtr'));
 	const lightRailStations = $derived(
 		bookmarkStore.bookmarks.filter(({ type }) => type === 'lightRail')
 	);
-
-	$inspect(mtrStations, lightRailStations);
 </script>
 
 <div class="h-full overflow-y-auto">
@@ -30,7 +29,7 @@
 					</li>
 				{/each}
 			</ul>
-		{:else}
+		{:else if isServer}{:else}
 			<p class="text-center">沒bookmark港鐵喎</p>
 		{/if}
 	</div>
@@ -51,8 +50,8 @@
 					</li>
 				{/each}
 			</ul>
-		{:else}
-			<p>沒bookmark港鐵喎</p>
+		{:else if isServer}{:else}
+			<p class="text-center">沒bookmark港鐵喎</p>
 		{/if}
 	</div>
 </div>
