@@ -17,7 +17,7 @@ type LightRailBookmark = {
 const getBookmarks = (): Bookmark[] => {
 	if (browser) {
 		try {
-			return JSON.parse(window.localStorage.getItem('bookmarks') ?? '[]');
+			return JSON.parse(window.localStorage.getItem('bookmark') ?? '[]');
 		} catch (e) {
 			return [];
 		}

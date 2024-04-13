@@ -19,8 +19,6 @@
 				station: station
 			})
 	});
-
-	console.log($query.data?.platform_list);
 </script>
 
 <div class="grid gap-4 h-full grid-rows-[max-content_1fr]">
