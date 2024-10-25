@@ -3,16 +3,14 @@
 	import '../app.css';
 	import { QueryClientProvider } from '@tanstack/svelte-query';
 	import { page } from '$app/stores';
-	const { data } = $props();
+	const { data, children } = $props();
 
 	import { onNavigate } from '$app/navigation';
 
 	onNavigate((navigation) => {
-		// @ts-expect-error do not have this type for now
 		if (!document.startViewTransition) return;
 
 		return new Promise((resolve) => {
-			// @ts-expect-error do not have this type for now
 			document.startViewTransition(async () => {
 				resolve();
 				await navigation.complete;
@@ -26,7 +24,7 @@
 		class="grid grid-cols-[1fr_calc(375px-2rem)_1fr] grid-rows-[minmax(0,1fr)_calc(40px+env(safe-area-inset-bottom,20px))] h-dvh"
 	>
 		<main class="col-start-2 pt-4 overflow-hidden">
-			<slot />
+			{@render children()}
 		</main>
 		<nav
 			class="col-start-1 col-span-3 grid-cols-subgrid grid bg-amber-300 pb-[env(safe-area-inset-bottom,20px)] dark:bg-dark-300"
